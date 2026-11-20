@@ -1,11 +1,36 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-20T22:42:52+09:00",
-  "count": 6,
+  "updated_at": "2026-11-21T07:49:40+09:00",
+  "count": 7,
   "dates": [
+    "2026-11-21",
     "2026-11-20"
   ],
   "items": [
+    {
+      "id": "20261121_0800",
+      "created_at": "2026-11-21T08:00:00+09:00",
+      "date": "2026-11-21",
+      "set_no": 7,
+      "product_name": "Thermal Master P3 스마트폰 열화상 카메라 iOS 및 안드로이드 시스템 호환 적외선 이미징 수동 초점 매크로 렌즈 -20도에게600도 PCB 수리에 가정 감지, 1세트",
+      "price_krw": 411300,
+      "discount_rate": 10,
+      "path": "feed/2026-11-21/20261121_0800.json",
+      "coupang_short_url": "https://link.coupang.com/a/iQrzjHpV12",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/Df-vkG_EkFV",
+        "x": "https://x.com/gurutech_pick/status/2123908994939199588"
+      },
+      "tags": [
+        "열화상카메라",
+        "누수탐지",
+        "단열",
+        "겨울관리비",
+        "테크가젯",
+        "스마트폰액세서리"
+      ]
+    },
     {
       "id": "20261120_2300",
       "created_at": "2026-11-20T23:00:00+09:00",

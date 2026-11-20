@@ -1,82 +1,109 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-20T22:42:52+09:00",
-  "id": "20261120_2300",
-  "path": "feed/2026-11-20/20261120_2300.json",
+  "updated_at": "2026-11-21T07:49:40+09:00",
+  "id": "20261121_0800",
+  "path": "feed/2026-11-21/20261121_0800.json",
   "item": {
     "schema_version": 1,
-    "id": "20261120_2300",
-    "set_no": 6,
-    "created_at": "2026-11-20T23:00:00+09:00",
-    "product_name": "님봇 NIIMBOT B1 휴대용 블루투스 라벨프린터 (B1프린터 블루 + 사각화이트 50x90 라벨지 1개 포함), 1세트",
-    "price_krw": 38000,
-    "list_price_krw": 89000,
-    "discount_rate": 57,
-    "coupang_short_url": "https://link.coupang.com/a/iPORW5pCOi",
+    "id": "20261121_0800",
+    "set_no": 7,
+    "created_at": "2026-11-21T08:00:00+09:00",
+    "product_name": "Thermal Master P3 스마트폰 열화상 카메라 iOS 및 안드로이드 시스템 호환 적외선 이미징 수동 초점 매크로 렌즈 -20도에게600도 PCB 수리에 가정 감지, 1세트",
+    "price_krw": 411300,
+    "list_price_krw": 457000,
+    "discount_rate": 10,
+    "coupang_short_url": "https://link.coupang.com/a/iQrzjHpV12",
     "ali_short_url": null,
     "ali_note": "의도적 제외 — 3호에서 알리 단축 링크의 스레드 미리보기가 '404 page'로 떠 한국 방문자에게 깨진 링크로 보인 사례가 있어, 해결 근거가 확인되기 전까지 쿠팡 단독으로 게시합니다.",
-    "video_source_url": "https://www.tiktok.com/@amircooper8/video/7707128462846348575",
+    "video_source_url": "https://www.tiktok.com/@josiahmcroberts/video/7617543448677109023",
+    "hook_type": "H1 손해 지목",
     "hooks": {
-      "threads": "애 이름표 붙일 때마다 매직으로 휘갈겨 쓰던 거 벌써 몇 번째야😭\n라벨프린터 하나 질렀는데 폰에서 바로 뽑혀서 헛웃음 나왔음ㅋㅋ 잉크도 없이\n수납장·양념통·택배박스까지 다 붙이고 다니는 중 (38,000원)\n링크는 첫 댓글👇",
-      "x": "이름표 매직으로 휘갈기던 손🙋‍♀️ 라벨프린터 샀는데 폰에서 바로 뽑혀서 헛웃음 나옴ㅋㅋ 잉크 없는 감열식\n50x90 라벨지 포함 38,000원 → 링크 첫 댓글👇",
-      "instagram_reels": "이름표 매직으로 휘갈기던 사람 손🙋‍♀️ 라벨프린터 샀는데 폰에서 바로 뽑혀서 헛웃음 나옴ㅋㅋ\n수납장·양념통·택배박스까지 다 붙이고 다님;;;\n잉크 없는 감열식 · 블루투스 앱 출력 · 50x90 라벨지 1롤 포함 · 38,000원\n링크는 프로필 링크 또는 X·스레드 @gurutech_pick 확인\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n#라벨프린터 #네임스티커 #집정리 #수납정리 #살림템 #가성비템 #쿠팡추천 #그루테크"
+      "threads": "새는 곳 아직 눈으로 찾고 있지\n폰에 꽂았더니 벽 온도가 색으로 보여서 어디서 새는지 그 자리에서 나옴\n411,300원, 27g이라 콘센트·창틀·바닥 다 들고 다니면서 찍는 중\n링크는 첫 댓글👇",
+      "x": "새는 곳 아직 눈으로 찾고 있지\n폰에 꽂으면 벽 온도가 색으로 보임 — 256×192 열화상 411,300원 → 링크 첫 댓글👇",
+      "instagram_reels": "새는 곳 아직 눈으로 찾고 있지\n폰에 꽂았더니 벽 온도가 색으로 보여서 어디서 새는지 그 자리에서 나옴\n27g·수동초점 8mm 매크로·-20~600℃ · 411,300원\n링크는 프로필 링크 또는 X·스레드 @gurutech_pick 확인\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.\n#열화상카메라 #누수탐지 #단열 #겨울관리비 #테크가젯 #가젯추천 #쿠팡추천 #그루테크",
+      "youtube_shorts_title": "새는 곳 아직 눈으로 찾고 있지 — 폰에 꽂으면 벽 온도가 색으로 보임 #Shorts",
+      "youtube_shorts_description": "벽 온도가 색으로 보이면 새는 곳은 바로 나옵니다. 스마트폰 USB-C에 꽂는 열화상 카메라 Thermal Master P3.\n· 411,300원 (정가 457,000원, 10%↓·로켓배송) / 쿠팡: https://link.coupang.com/a/iQrzjHpV12\n· VOx 256×192(X³ 업스케일 512×384) · 열감도 35mK 미만 · -20~600℃ · 수동초점 8mm~ · 27g\n· 주의: 삼각대 나사 없음, X³ 모드 프레임 저하, 안드로이드는 APK 수동 설치, 사용 중 충전 불가\n· 더 싼 대안: Thermal Master P1 207,000원(고정초점)\n· 영상은 해외 크리에이터의 P3 실사용 리뷰 숏폼입니다.\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+      "tiktok": "벽이 이렇게 보이면 새는 곳은 이미 나와 있음 🔎\n#열화상카메라 #누수탐지 #테크가젯\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
     },
-    "first_comment": "님봇 B1 휴대용 블루투스 라벨프린터 (B1블루 + 사각화이트 50x90 라벨지 포함)\n🛒 쿠팡 38,000원 (정가 89,000원, 57%↓): https://link.coupang.com/a/iPORW5pCOi\n· 잉크 없는 감열식 · 블루투스 앱 출력 · 최대 50mm 폭 라벨\n· 50x90 라벨지 1롤 + 실리콘 보호케이스 기본 포함\n· 상품평 501건(최고 89%), 무료배송·내일 도착\n· 주의: 감열식이라 열·직사광에 오래 두면 글씨 흐려짐, 라벨지 폭 규격 확인\n· 영상은 해외 실사용 숏폼(회색 LCD 2인치 감열식), 링크는 님봇 B1로 같은 방식의 다른 모델\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
+    "first_comment": "Thermal Master P3 스마트폰 열화상 카메라 (1세트)\n🛒 411,300원 (정가 457,000원, 10%↓·로켓배송·역대최저): https://link.coupang.com/a/iQrzjHpV12\n· VOx 256×192(X³ 512×384)·35mK 미만·-20~600℃·수동초점 8mm·27g\n· 주의: 삼각대 없음·X³ 모드 느림·앱 번역 어색·안드로이드 APK 설치·사용 중 충전 불가\n· 상품평 6건뿐 / 더 싼 대안 Thermal Master P1 207,000원(고정초점)\n· 영상은 해외 리뷰 숏폼(P3), 링크는 같은 P3 1세트(파란색) — 색상 차이 있을 수 있음\n이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
     "disclosure": "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.",
     "caveats": [
-      "남의 크리에이터 영상입니다(TikTok @amircooper8, 좋아요 2,590·댓글 40·저장 938). 그대로 재업로드하면 저작권 신고·계정 제재 리스크가 있습니다. ① 크리에이터 허락+크레딧 ② 같은 제품 직접 촬영 ③ 판매자 공식 영상 — ②를 권장합니다.",
-      "영상-상품 일치: 영상 기기는 회색 본체 + LCD 표시창 + OPEN 버튼의 2인치 감열식(해외 Nelko 계열 M2_H). 링크 제품은 님봇 B1(흰·민트 투톤, LCD 없음)로 같은 2인치 감열식·블루투스 방식의 다른 모델입니다. 댓글에 명시했습니다.",
-      "영상 라벨에 미국 업체명(JAY HILL TRUCKING INC)과 'Service Due At 1,039,701 MI'가 찍혀 있습니다. 국내 시청자에게는 '이름표·정리 라벨' 맥락으로 안내했습니다.",
-      "38,000원은 'B1프린터 블루 + 사각화이트 50x90 라벨지, 1세트' 옵션 기준 57% 할인가(정가 89,000원)입니다. 다른 라벨지 조합은 가격이 다릅니다.",
-      "쿠팡 파트너스 홈에 '최종승인 재검토 요청이 완료되어 검토 중' 안내가 노출됩니다. 링크 발급·302 리다이렉트(lptag=AF8062947)·실적 집계는 정상입니다.",
-      "알리 보조 링크는 스레드 미리보기 404 이력 때문에 이번 회차도 넣지 않았습니다.",
+      "남의 크리에이터 영상입니다(TikTok @josiahmcroberts, 좋아요 4,420·댓글 78·저장 624). 그대로 재업로드하면 저작권 신고·계정 제재 리스크가 있습니다. ① 크리에이터 허락+크레딧 ② 같은 제품 직접 촬영 ③ 판매자 공식 영상 — ②를 권장합니다.",
+      "영상-상품 일치: 영상은 크리에이터가 해외에서 Thermal Master P3(#thermalmasterp3)를 아이폰에 꽂아 쓴 리뷰 숏폼입니다. 링크 상품은 같은 P3 1세트(파란색)로 색상 차이가 있을 수 있어 댓글에 명시했습니다.",
+      "가격 기준: 411,300원은 정가 457,000원에서 10% 할인된 로켓배송 옵션(1세트)입니다. 같은 모델의 다른 판매처 상품(정가 720,000원→422,100원, 41%↓)이 있어 정가 대비 할인율이 판매처마다 다릅니다.",
+      "영상에 영어 자막이 박혀 있고 앱 UI에 Thermal Master 로고가 보입니다. 링크 상품이 같은 브랜드라 브랜드 미스매치는 없습니다.",
+      "첫 프레임 검사 통과: 0.0초부터 열화상 화면(정체불명+측정 장면)이 움직이고, 0.5·1.5초에도 계속 동작, 기기 실체는 12초 뒤 공개됩니다. 원본 38.38초 중 12.0~32.0초를 잘라 20.0초로 만들었습니다.",
+      "유튜브 쇼츠 고정 댓글은 작성했지만 '고정'은 채널 휴대폰 인증(일회성)이 필요해 완료하지 못했습니다. 설명란·댓글 속 외부 링크도 같은 인증 전까지 클릭되지 않습니다.",
+      "틱톡: 업로드 직후 공개 범위가 '나만'으로 게시되어 '모두'로 변경했습니다(콘텐츠 검토 통과 후 공개 확인).",
       "결제·구매는 하지 않았습니다(지출 0원)."
     ],
     "published_urls": {
-      "threads": "https://www.threads.com/@gurutech_pick/post/Df9xkk4ErgF",
-      "x": "https://x.com/gurutech_pick/status/2123772666884796654",
-      "x_reply_a": "https://x.com/gurutech_pick/status/2123772858442944975",
-      "x_reply_b": "https://x.com/gurutech_pick/status/2123773194335322573",
-      "instagram": "https://www.instagram.com/p/Df9yTcttLuZ/"
+      "threads": "https://www.threads.com/@gurutech_pick/post/Df-vkG_EkFV",
+      "x": "https://x.com/gurutech_pick/status/2123908994939199588",
+      "x_reply_a": "https://x.com/gurutech_pick/status/2123909127626002552",
+      "x_reply_b": "https://x.com/gurutech_pick/status/2123909414298218963",
+      "instagram": "https://www.instagram.com/p/Df-wNaxtyvn/",
+      "youtube": "https://www.youtube.com/shorts/AtjfwevgRxs",
+      "tiktok": "https://www.tiktok.com/@oeuvro/video/7710389185236061492"
     },
     "product": {
-      "brand": "NIIMBOT(님봇)",
-      "model": "B1",
-      "color": "블루",
-      "coupang_product_id": "8101846659",
-      "coupang_item_id": "23184466001",
-      "coupang_vendor_item_id": "90217146530",
+      "brand": "Thermal Master",
+      "model": "P3",
+      "color": "파란색",
+      "coupang_product_id": "9666257983",
+      "coupang_item_id": "28899448427",
+      "coupang_vendor_item_id": "95831749111",
       "rating": null,
-      "review_count": 501,
-      "shipping": "무료배송 (11-21 토 도착 예정)",
-      "review_note": "평점 없이 '상품평 501건 중 최고 89%·좋음 8%' 형태로 공개",
-      "seller": "블루컴즈(주)",
-      "certification": "KC R-R-WUj-B1A / YU101553-22002"
+      "review_count": 6,
+      "shipping": "로켓배송",
+      "review_note": "상품평 6건(표본 적음). 로우차트 기준 역대최저가 411,300원, 최고가 457,000원, 최근 3주 평균 411,300원.",
+      "specs": "VOx 256×192 네이티브(X³ 업스케일 512×384) · 열감도 35mK 미만 · 25Hz · -20~600℃(±2℃ 또는 ±2%) · 수동 초점 8mm~80m · 알루미늄 59×27×17.2mm·27g · USB-C(라이트닝·USB-A 어댑터·케이스 동봉)",
+      "cons": "삼각대 나사 없음(거치 불가) · X³ 업스케일 시 프레임 저하 · 앱 UI 노후·기계번역 · 안드로이드는 스토어에 없어 APK 수동 설치 · 사용 중 USB-C 점유로 충전 불가 · 두꺼운 케이스에선 연장케이블 필요",
+      "alternatives": [
+        {
+          "name": "Thermal Master P1",
+          "price_krw": 207000,
+          "note": "고정초점·더 저렴"
+        },
+        {
+          "name": "하이크마이크로 MINI2 V2",
+          "price_krw": 330000,
+          "note": "화질 우선"
+        }
+      ],
+      "other_listing": {
+        "coupang_product_id": "9788645965",
+        "coupang_item_id": "29307512378",
+        "price_krw": 422100,
+        "list_price_krw": 720000,
+        "discount_rate": 41,
+        "note": "같은 모델 다른 판매처. 링크는 더 싼 로켓배송(411,300원) 상품으로 발급"
+      }
     },
     "ali": null,
     "video": {
-      "workspace_path": "downloads/sns_shorts/20261120_2300_clip.mp4",
-      "upload_file": "downloads/sns_shorts/20261120_2300_clip_small.mp4",
-      "poster": "downloads/sns_shorts/20261120_2300_poster.jpg",
-      "duration_sec": 23.74,
+      "workspace_path": "downloads/sns_shorts/20261121_0800_clip.mp4",
+      "upload_file": "downloads/sns_shorts/20261121_0800_clip_small.mp4",
+      "poster": "downloads/sns_shorts/20261121_0800_poster.jpg",
+      "duration_sec": 20.0,
       "resolution": "720x1280",
-      "codec": "H.264 High + AAC(LC) 96k 44.1kHz, 30fps",
-      "source_trim": "원본 전체(23.74초) 사용, 컷 없음",
-      "fetch_command": "python3 -m yt_dlp -f \"h264_720p_1057494-0\" -o src.mp4 \"https://www.tiktok.com/@amircooper8/video/7707128462846348575\""
+      "codec": "H.264 High + AAC(LC) · small 2.42MB",
+      "source_trim": "원본 38.38초 중 12.0~32.0초 컷",
+      "fetch_command": "python3 -m yt_dlp -f \"h264_720p_1075087-0\" -o src.mp4 \"https://www.tiktok.com/@josiahmcroberts/video/7617543448677109023\" && ffmpeg -ss 12.0 -to 32.0 -i src.mp4 -c:v libx264 -profile:v high -crf 21 -c:a aac -b:a 96k clip.mp4"
     },
     "rights": {
-      "creator": "@amircooper8",
-      "creator_url": "https://www.tiktok.com/@amircooper8/video/7707128462846348575",
-      "metrics": "좋아요 2,590 · 댓글 40 · 저장 938 (2026-11-20 확인)",
-      "reuse_note": "워터마크 없음(yt-dlp 무워터마크 원본), 판매 유도·계정 홍보 문구 없음. 미국 트럭기사 본인의 실사용 촬영. 재업로드 금지 — 허락+크레딧 또는 직접 촬영."
+      "creator": "@josiahmcroberts",
+      "creator_url": "https://www.tiktok.com/@josiahmcroberts/video/7617543448677109023",
+      "metrics": "좋아요 4,420 · 댓글 78 · 저장 624 (2026-11-21 확인)",
+      "reuse_note": "워터마크 없음(yt-dlp 무워터마크 원본), 판매 링크 유도 문구 없음. 테크 리뷰어의 촬영 영상으로 '전후/측정' 장면 중심으로 잘라 사용. 재업로드 금지 — 허락+크레딧 또는 직접 촬영."
     },
     "tags": [
-      "라벨프린터",
-      "네임스티커",
-      "감열식",
-      "정리",
-      "가성비"
-    ],
-    "revisions": []
+      "열화상카메라",
+      "누수탐지",
+      "단열",
+      "겨울관리비",
+      "테크가젯",
+      "스마트폰액세서리"
+    ]
   }
 }
