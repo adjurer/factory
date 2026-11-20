@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-20T17:50:38+09:00",
+  "count": 4,
+  "dates": [
+    "2026-11-20"
+  ],
+  "items": [
+    {
+      "id": "20261120_1700",
+      "created_at": "2026-11-20T17:00:00+09:00",
+      "date": "2026-11-20",
+      "set_no": 4,
+      "product_name": "쥬위 전동 충전식 발각질제거기 전동 각질 제거기 무선 풋 발각질 제거기 (블랙, KDM20250823BD)",
+      "price_krw": 40160,
+      "discount_rate": 32,
+      "path": "feed/2026-11-20/20261120_1700.json",
+      "coupang_short_url": "https://link.coupang.com/a/iPpeaRw1xA",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/Df9IghZEk41",
+        "x": "https://x.com/gurutech_pick/status/2123682510236442869"
+      },
+      "tags": [
+        "발각질제거기",
+        "뒤꿈치각질",
+        "풋케어",
+        "살림",
+        "가성비"
+      ]
+    },
+    {
+      "id": "20261120_1400",
+      "created_at": "2026-11-20T14:00:00+09:00",
+      "date": "2026-11-20",
+      "set_no": 3,
+      "product_name": "리바인 무선 만능 전동 다용도 화장실 욕실 청소기 9in1 분리형 방수, 화이트",
+      "price_krw": 36480,
+      "discount_rate": 8,
+      "path": "feed/2026-11-20/20261120_1400.json",
+      "coupang_short_url": "https://link.coupang.com/a/iPceVP85YW",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/Df8zvUSEsgo",
+        "x": "https://x.com/gurutech_pick/status/2123636618246685107"
+      },
+      "tags": [
+        "전동청소솔",
+        "욕실청소",
+        "스핀스크러버",
+        "살림",
+        "가성비"
+      ]
+    },
+    {
+      "id": "20261120_1100",
+      "created_at": "2026-11-20T11:00:00+09:00",
+      "date": "2026-11-20",
+      "set_no": 2,
+      "product_name": "한경희생활과학 가정용 UV C 귀금속 안경 세척 살균 2in1 대용량 초음파세척기 SHF-GC900",
+      "price_krw": 46310,
+      "discount_rate": 42,
+      "path": "feed/2026-11-20/20261120_1100.json",
+      "coupang_short_url": "https://link.coupang.com/a/iO1K7e6N9o",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/Df8mt4fEssI",
+        "x": "https://x.com/gurutech_pick/status/2123621738814886325"
+      },
+      "tags": [
+        "초음파세척기",
+        "교정장치",
+        "안경세척",
+        "살림",
+        "가성비"
+      ]
+    },
+    {
+      "id": "20261120_0830",
+      "created_at": "2026-11-20T08:30:00+09:00",
+      "date": "2026-11-20",
+      "set_no": 1,
+      "product_name": "풀라스 프리미엄 보풀제거기 FL-LR3000 화이트 (충전식 무선 6중날)",
+      "price_krw": 39320,
+      "discount_rate": 50,
+      "path": "feed/2026-11-20/20261120_0830.json",
+      "coupang_short_url": "https://link.coupang.com/a/iOPOGuM4VU",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/Df8aDQrkpbS",
+        "x": "https://x.com/gurutech_pick/status/2123581579155149305"
+      },
+      "tags": [
+        "보풀제거기",
+        "니트관리",
+        "살림",
+        "가성비",
+        "겨울"
+      ]
+    }
+  ]
+}

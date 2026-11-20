@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.gurutech.hotdeal-radar
+  공개 핫딜 RSS → IT·가성비 필터 → 중복 제거 → 알림. 15분마다 1회.
+
+  설치:
+    BOT="$HOME/factory/macmini-codex-bot"
+    sed "s|__BOT_DIR__|$BOT|g" launchd/com.gurutech.hotdeal-radar.plist \
+      > ~/Library/LaunchAgents/com.gurutech.hotdeal-radar.plist
+    plutil -lint ~/Library/LaunchAgents/com.gurutech.hotdeal-radar.plist
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.gurutech.hotdeal-radar.plist
+
+  미리보기만 하고 싶으면 .env 에 HOTDEAL_DRY_RUN=1 을 넣으세요.
+  해제:
+    launchctl bootout gui/$(id -u)/com.gurutech.hotdeal-radar
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.gurutech.hotdeal-radar</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-lc</string>
+        <string>cd "__BOT_DIR__" &amp;&amp; mkdir -p logs state &amp;&amp; /usr/bin/python3 scripts/hotdeal_radar.py >> logs/hotdeal-radar.log 2&gt;&amp;1</string>
+    </array>
+
+    <!-- 15분마다. 피드가 분 단위로 갱신되므로 짧게 두되, max_age_minutes(180)로 범위를 좁힙니다. -->
+    <key>StartInterval</key>
+    <integer>900</integer>
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>WorkingDirectory</key>
+    <string>__BOT_DIR__</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>LANG</key>
+        <string>en_US.UTF-8</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>__BOT_DIR__/logs/hotdeal-radar.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>__BOT_DIR__/logs/hotdeal-radar.err.log</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>LowPriorityIO</key>
+    <true/>
+    <key>Nice</key>
+    <integer>10</integer>
+</dict>
+</plist>

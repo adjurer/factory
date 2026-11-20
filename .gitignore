@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# 실행 환경·비밀 (macmini-codex-bot/.gitignore 에도 있음)
+.env
+.env.*
+!.env.example

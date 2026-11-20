@@ -1,0 +1,8 @@
+# 설치할 서드파티 패키지가 없습니다 (표준 라이브러리만 사용).
+#
+#   python3 -m pip install -r requirements.txt
+#
+# 위 명령은 그대로 실행해도 됩니다(설치할 것이 없어 즉시 끝납니다).
+# 선택 도구는 OS 패키지로 설치하세요:
+#   brew install yt-dlp ffmpeg     # video.fetch_command 로 클립 다시 받기
+#   npm i -g @openai/codex         # --run-codex 로 실제 초안 생성
