@@ -67,6 +67,7 @@ DEFAULT_CONFIG = {
 
 PRICE_RE = re.compile(r"([\d,]{3,})\s*원")
 TAG_RE = re.compile(r"^\[([^\]]{1,20})\]")
+COUPANG_URL_RE = re.compile(r"https?://[^\s\"'<>]*coupang\.com[^\s\"'<>]*")
 
 
 # --------------------------------------------------------------------------- 피드
@@ -280,9 +281,26 @@ def notify(text: str, dry_run: bool, log) -> "list[dict]":
     return results
 
 
+def find_coupang_url(item: dict) -> "str | None":
+    """글 안에 적힌 쿠팡 상품 URL을 찾아낸다(링크·본문). 없으면 None.
+
+    ※ 제목으로 쿠팡 검색을 돌려 '비슷한 상품' 링크를 붙이지는 않는다 — 다른 상품을
+      딜 상품처럼 보이게 만들 수 있기 때문(오표기·오판매로 이어짐).
+    """
+    for field in ("link", "description"):
+        match = COUPANG_URL_RE.search(item.get(field) or "")
+        if match:
+            return match.group(0).rstrip(".,)")
+    return None
+
+
 def enrich_link(item: dict, use_affiliate: bool, log) -> str:
+    """쿠팡 키가 있고 글에 쿠팡 상품 URL이 있으면 파트너스 단축 링크로 바꿔 준다.
+
+    키가 없거나 쿠팡 URL이 없으면 원래 링크를 그대로 쓴다(건너뜀, 오류 아님).
+    """
     link = item.get("link", "")
-    if not use_affiliate or "coupang.com" not in link:
+    if not use_affiliate:
         return link
     try:
         import coupang_api  # 같은 scripts/ 폴더
@@ -291,7 +309,13 @@ def enrich_link(item: dict, use_affiliate: bool, log) -> str:
     if not coupang_api.has_keys():
         log.debug("쿠팡 키 없음 — 원본 링크 사용")
         return link
-    short = coupang_api.first_shorten_url(link)
+    target = find_coupang_url(item)
+    if not target:
+        log.debug("글에 쿠팡 상품 URL 없음 — 원본 링크 사용")
+        return link
+    short = coupang_api.first_shorten_url(target)
+    if short:
+        item["affiliate_from"] = target
     return short or link
 
 
@@ -351,6 +375,8 @@ def main(argv=None) -> int:
     for idx, item in enumerate(picked, start=1):
         link = enrich_link(item, not args.no_affiliate, log)
         message = format_message(item, link, idx, len(picked))
+        if item.get("affiliate_from") and item.get("affiliate_from") != item.get("link"):
+            message += f"\n· 글 원본: {item.get('link')}"
         channels = notify(message, args.dry_run, log)
         results.append({
             "key": item["key"], "title": item["title"], "shop": item.get("shop"),
