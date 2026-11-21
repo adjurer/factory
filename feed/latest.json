@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-21T10:56:49+09:00",
+  "updated_at": "2026-11-21T10:57:39+09:00",
   "id": "20261121_1100",
   "path": "feed/2026-11-21/20261121_1100.json",
   "item": {
@@ -41,6 +41,8 @@
     "published_urls": {
       "threads": "https://www.threads.com/@gurutech_pick/post/Df_En6JEgfr",
       "x": "https://x.com/gurutech_pick/status/2123956187234529410",
+      "x_reply_a": "https://x.com/gurutech_pick/status/2123956324371513607",
+      "x_reply_b": "https://x.com/gurutech_pick/status/2123956528453722240",
       "instagram": "https://www.instagram.com/p/Df_FqBjNa12/",
       "youtube": "https://www.youtube.com/shorts/1rfkNPU6tTg",
       "tiktok": "https://www.tiktok.com/@oeuvro/video/7710437410299006228"
