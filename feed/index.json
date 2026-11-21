@@ -1,12 +1,39 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-21T23:15:00+09:00",
-  "count": 12,
+  "updated_at": "2026-11-22T07:48:24+09:00",
+  "count": 13,
   "dates": [
+    "2026-11-22",
     "2026-11-21",
     "2026-11-20"
   ],
   "items": [
+    {
+      "id": "20261122_0800",
+      "created_at": "2026-11-22T08:00:00+09:00",
+      "date": "2026-11-22",
+      "set_no": 13,
+      "product_name": "SHILONG 무선 강력 폭풍팬 터보 에어 블로워, 1세트 (본체 + 배터리 2개)",
+      "price_krw": 40980,
+      "discount_rate": 62,
+      "path": "feed/2026-11-22/20261122_0800.json",
+      "coupang_short_url": "https://link.coupang.com/a/iR6tBh3oBM",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/DgBUZmNkpzv",
+        "x": "https://x.com/gurutech_pick/status/2124271612237357211"
+      },
+      "tags": [
+        "에어건",
+        "에어블로워",
+        "터보팬",
+        "PC청소",
+        "먼지청소",
+        "차량청소",
+        "캠핑",
+        "테크가젯"
+      ]
+    },
     {
       "id": "20261121_2300",
       "created_at": "2026-11-21T23:00:00+09:00",
@@ -20,14 +47,9 @@
       "published": true,
       "published_urls": {
         "threads": "https://www.threads.com/@gurutech_pick/post/DgAWowMEu8G",
-        "threads_comment": "https://www.threads.com/@gurutech_pick/post/DgAWowMEu8G",
-        "x": "https://x.com/gurutech_pick/status/2124135783070412970",
-        "x_reply_a": "https://x.com/gurutech_pick/status/2124135893531492605",
-        "x_reply_b": "https://x.com/gurutech_pick/status/2124136012456829038",
-        "instagram": "https://www.instagram.com/p/DgAXPQrtpLx/",
-        "youtube": "https://www.youtube.com/shorts/R6DjOBwMl7o",
-        "tiktok": "https://www.tiktok.com/@objetindex/video/7710620707994045716"
-      }
+        "x": "https://x.com/gurutech_pick/status/2124135783070412970"
+      },
+      "tags": []
     },
     {
       "id": "20261121_2000",
@@ -42,14 +64,9 @@
       "published": true,
       "published_urls": {
         "threads": "https://www.threads.com/@gurutech_pick/post/DgAB4y0EiIw",
-        "threads_comment": "https://www.threads.com/@gurutech_pick/post/DgAB4y0EiIw",
-        "x": "https://x.com/gurutech_pick/status/2124089953500185038",
-        "x_reply_a": "https://x.com/gurutech_pick/status/2124090090184184075",
-        "x_reply_b": "https://x.com/gurutech_pick/status/2124090203174518804",
-        "instagram": "https://www.instagram.com/p/DgACZmBtpR9/",
-        "youtube": "https://www.youtube.com/shorts/uDPaLmpoJ04",
-        "tiktok": "https://www.tiktok.com/@objetindex/video/7710573555905252629"
-      }
+        "x": "https://x.com/gurutech_pick/status/2124089953500185038"
+      },
+      "tags": []
     },
     {
       "id": "20261121_1700",
@@ -64,14 +81,15 @@
       "published": true,
       "published_urls": {
         "threads": "https://www.threads.com/@gurutech_pick/post/Df_tpuqEuCb",
-        "threads_comment": "https://www.threads.com/@gurutech_pick/post/Df_t0-SGAYB",
-        "x": "https://x.com/gurutech_pick/status/2124045548420567343",
-        "x_reply_a": "https://x.com/gurutech_pick/status/2124045680725627111",
-        "x_reply_b": "https://x.com/gurutech_pick/status/2124045836401484204",
-        "instagram": "https://www.instagram.com/reel/Df_uQk0tE23/",
-        "youtube": "https://www.youtube.com/shorts/2xDOShAVPvc",
-        "tiktok": "https://www.tiktok.com/@objetindex/video/7710528454025809173"
-      }
+        "x": "https://x.com/gurutech_pick/status/2124045548420567343"
+      },
+      "tags": [
+        "미니체인톱",
+        "전기톱",
+        "무선전기톱",
+        "정원관리",
+        "신박템"
+      ]
     },
     {
       "id": "20261121_1400",
