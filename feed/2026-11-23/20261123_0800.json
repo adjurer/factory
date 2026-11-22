@@ -48,10 +48,11 @@
     "threads_comment": "https://www.threads.com/@gurutech_pick/post/DgD5en3EnKq",
     "x": "https://x.com/gurutech_pick/status/2124634344421818689",
     "x_reply_a": "https://x.com/gurutech_pick/status/2124634475674079739",
-    "x_reply_b": null,
+    "x_reply_b": "https://x.com/gurutech_pick/status/2124634629911335217",
     "instagram": "https://www.instagram.com/p/DgD6AHjNkX9/",
     "youtube": "https://www.youtube.com/shorts/NwZHqU_M_gY",
-    "tiktok": "https://www.tiktok.com/@objetindex/video/7711131412023282965"
+    "tiktok": "https://www.tiktok.com/@objetindex/video/7711131412023282965",
+    "instagram_comment": "https://www.instagram.com/p/DgD6AHjNkX9/"
   },
   "product": {
     "brand": "TWOWIN",
@@ -86,5 +87,11 @@
     "목공DIY",
     "신박템",
     "테크가젯"
+  ],
+  "revisions": [
+    {
+      "at": "2026-11-23T07:52:00+09:00",
+      "note": "게시 직후 확인된 값 보강: X 댓글 B URL, 인스타 첫 댓글(쿠팡 링크) 추가"
+    }
   ]
 }
