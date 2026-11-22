@@ -1,13 +1,38 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-22T07:48:24+09:00",
-  "count": 13,
+  "updated_at": "2026-11-22T10:51:38+09:00",
+  "count": 14,
   "dates": [
     "2026-11-22",
     "2026-11-21",
     "2026-11-20"
   ],
   "items": [
+    {
+      "id": "20261122_1100",
+      "created_at": "2026-11-22T11:00:00+09:00",
+      "date": "2026-11-22",
+      "set_no": 14,
+      "product_name": "SQUANTOOL 휴대용 가정용 충전식 무선 고압 세척기 6in1 다기능 고급형 초고압세차기 4000mAh, 1세트 (YU-300)",
+      "price_krw": 62010,
+      "discount_rate": 55,
+      "path": "feed/2026-11-22/20261122_1100.json",
+      "coupang_short_url": "https://link.coupang.com/a/iSjxrSQsnc",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/DgBpd0Vkr7z",
+        "x": "https://x.com/gurutech_pick/status/2124318212770984335"
+      },
+      "tags": [
+        "무선세차기",
+        "고압세척기",
+        "세차건",
+        "현관청소",
+        "계단청소",
+        "차량용품",
+        "테크가젯"
+      ]
+    },
     {
       "id": "20261122_0800",
       "created_at": "2026-11-22T08:00:00+09:00",

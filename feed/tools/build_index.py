@@ -31,8 +31,18 @@ REQUIRED_PUBLISHED = ["threads", "x"]
 
 
 def load(path: Path) -> dict:
+    """글감 JSON을 읽는다.
+
+    과거 회차가 latest.json 형식({"item": {...}})으로 저장한 파일도
+    데이터를 잃지 않고 그대로 읽도록 래핑을 풀어 준다.
+    """
     with path.open(encoding="utf-8") as fp:
-        return json.load(fp)
+        data = json.load(fp)
+    if isinstance(data, dict) and "item" not in data and "created_at" not in data and "id" not in data:
+        raise ValueError("알 수 없는 형식: id/created_at도 item 래핑도 없음")
+    if isinstance(data, dict) and isinstance(data.get("item"), dict) and "created_at" not in data:
+        data = dict(data["item"])
+    return data
 
 
 def validate(item: dict, path: Path) -> list[str]:
