@@ -1,13 +1,39 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-22T13:44:45+09:00",
-  "count": 15,
+  "updated_at": "2026-11-23T07:49:24+09:00",
+  "count": 16,
   "dates": [
+    "2026-11-23",
     "2026-11-22",
     "2026-11-21",
     "2026-11-20"
   ],
   "items": [
+    {
+      "id": "20261123_0800",
+      "created_at": "2026-11-23T08:00:00+09:00",
+      "date": "2026-11-23",
+      "set_no": 16,
+      "product_name": "TWOWIN 미니 DIY 데스크탑 레이저 조각기 그림 로고 CNC 프린터 작업 영역 목재 라우터 조각기 20cm x 17cm 20W, 20W Laser, 1개",
+      "price_krw": 111180,
+      "discount_rate": 0,
+      "path": "feed/2026-11-23/20261123_0800.json",
+      "coupang_short_url": "https://link.coupang.com/a/iTLzrus45c",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/DgD5en3EnKq",
+        "x": "https://x.com/gurutech_pick/status/2124634344421818689"
+      },
+      "tags": [
+        "레이저각인기",
+        "미니각인기",
+        "각인기",
+        "DIY공예",
+        "목공DIY",
+        "신박템",
+        "테크가젯"
+      ]
+    },
     {
       "id": "20261122_1400",
       "created_at": "2026-11-22T14:00:00+09:00",
