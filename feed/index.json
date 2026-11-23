@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-23T07:51:11+09:00",
-  "count": 16,
+  "updated_at": "2026-11-23T10:47:28+09:00",
+  "count": 17,
   "dates": [
     "2026-11-23",
     "2026-11-22",
@@ -9,6 +9,31 @@
     "2026-11-20"
   ],
   "items": [
+    {
+      "id": "20261123_1100",
+      "created_at": "2026-11-23T11:00:00+09:00",
+      "date": "2026-11-23",
+      "set_no": 17,
+      "product_name": "우스틴스 충전임팩 전동 라쳇 렌치 12V 임팩트 렌치 세트, 본품 + 배터리 2개, 1세트",
+      "price_krw": 58980,
+      "discount_rate": 35,
+      "path": "feed/2026-11-23/20261123_1100.json",
+      "coupang_short_url": "https://link.coupang.com/a/iTX9UqfBtI",
+      "published": true,
+      "published_urls": {
+        "threads": "https://www.threads.com/@gurutech_pick/post/DgENvMekgb0",
+        "x": "https://x.com/gurutech_pick/status/2124679053823361263"
+      },
+      "tags": [
+        "전동렌치",
+        "임팩트렌치",
+        "타이어교체",
+        "차량용품",
+        "정비공구",
+        "신박템",
+        "테크가젯"
+      ]
+    },
     {
       "id": "20261123_0800",
       "created_at": "2026-11-23T08:00:00+09:00",
