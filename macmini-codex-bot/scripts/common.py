@@ -6,9 +6,13 @@
 """
 from __future__ import annotations
 
+import contextlib
+import fcntl
 import json
 import logging
 import os
+import shutil
+import subprocess
 import tempfile
 import time
 import urllib.error
@@ -132,3 +136,67 @@ def setup_logging(verbose: bool = False) -> logging.Logger:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
     return logging.getLogger("factory")
+
+
+# --------------------------------------------------------------------------- 실행·잠금
+
+
+def have(cmd: str) -> "str | None":
+    """PATH에서 실행 파일을 찾는다. 없으면 None."""
+    return shutil.which(cmd)
+
+
+def run(cmd, cwd=None, timeout: int = 120, env=None) -> subprocess.CompletedProcess:
+    """명령을 실행하고 결과를 돌려준다. 실행 불가·시간초과는 RuntimeError."""
+    argv = [str(c) for c in cmd]
+    try:
+        return subprocess.run(argv, cwd=str(cwd) if cwd else None, capture_output=True,
+                              text=True, timeout=timeout, env=env)
+    except FileNotFoundError as exc:
+        raise RuntimeError(f"명령을 찾지 못했습니다: {argv[0]}") from exc
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f"명령 시간 초과({timeout}s): {argv[0]}") from exc
+
+
+@contextlib.contextmanager
+def repo_lock(path: "Path | str | None" = None, wait_sec: int = 60):
+    """git 작업·codex 실행을 한 번에 하나만 하도록 잠근다.
+
+    `with repo_lock() as got:` — got 이 False 면 다른 실행이 점유 중이라는 뜻이고,
+    이번 주기는 건너뛰면 된다(같은 일을 두 번 하지 않는다).
+    """
+    fp = try_lock(path, wait_sec)
+    got = fp is not None
+    try:
+        yield got
+    finally:
+        if fp is not None:
+            fp.close()
+
+
+def try_lock(path: "Path | str | None" = None, wait_sec: int = 60):
+    """잠금 파일을 잡으면 열린 파일 객체를, 못 잡으면 None을 돌려준다.
+
+    반환된 객체를 닫으면 잠금이 풀린다(CLI는 프로세스가 끝나면 자동 해제).
+    """
+    lock_path = Path(path) if path else BOT_DIR / "state" / ".cycle.lock"
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    fp = open(lock_path, "w", encoding="utf-8")
+    deadline = time.time() + max(0, wait_sec)
+    while True:
+        try:
+            fcntl.flock(fp.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            fp.write(f"pid={os.getpid()} at={time.time():.0f}\n")
+            fp.flush()
+            return fp
+        except BlockingIOError:
+            if time.time() >= deadline:
+                fp.close()
+                return None
+            time.sleep(1.0)
+
+
+def redact_home(text: str) -> str:
+    """공개 저장소에 올릴 글에서 홈 경로를 `~` 로 바꾼다."""
+    home = str(Path.home())
+    return (text or "").replace(home, "~")

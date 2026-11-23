@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.gurutech.codex-report
+  사이클 보고 — 실행 결과·오류·개선 제안을 reports/latest.md 에 남기고 drafts/reports 만 커밋·푸시.
+  맥미니 → 유리로 돌아가는 피드백 통로입니다. 매시 5분·35분(30분 주기)에 1회.
+
+  설치:
+    bash setup_macmini.sh            # 원클릭(권장)
+    또는 수동:
+    BOT="$HOME/factory/macmini-codex-bot"
+    sed -e "s|__BOT_DIR__|$BOT|g" -e "s|__PYTHON__|/usr/bin/python3|g" launchd/com.gurutech.codex-report.plist \
+      > ~/Library/LaunchAgents/com.gurutech.codex-report.plist
+    plutil -lint ~/Library/LaunchAgents/com.gurutech.codex-report.plist
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.gurutech.codex-report.plist
+
+  즉시 1회 실행:
+    launchctl kickstart -k gui/$(id -u)/com.gurutech.codex-report
+
+  해제:
+    launchctl bootout gui/$(id -u)/com.gurutech.codex-report
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.gurutech.codex-report</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>-lc</string>
+        <string>cd "__BOT_DIR__" &amp;&amp; mkdir -p logs reports state &amp;&amp; __PYTHON__ scripts/report_cycle.py >> logs/codex-report.log 2&gt;&amp;1</string>
+    </array>
+
+    <!-- codex-sync(30분 간격, 등록 시점 기준)와 겹치지 않게 시각을 :05 / :35 로 고정 -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Minute</key>
+            <integer>5</integer>
+        </dict>
+        <dict>
+            <key>Minute</key>
+            <integer>35</integer>
+        </dict>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>WorkingDirectory</key>
+    <string>__BOT_DIR__</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>LANG</key>
+        <string>en_US.UTF-8</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>__BOT_DIR__/logs/codex-report.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>__BOT_DIR__/logs/codex-report.err.log</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+    <key>LowPriorityIO</key>
+    <true/>
+    <key>Nice</key>
+    <integer>10</integer>
+</dict>
+</plist>

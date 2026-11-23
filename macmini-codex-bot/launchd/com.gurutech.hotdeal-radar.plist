@@ -5,8 +5,10 @@
   공개 핫딜 RSS → IT·가성비 필터 → 중복 제거 → 알림. 15분마다 1회.
 
   설치:
+    bash setup_macmini.sh            # 원클릭(권장)
+    또는 수동:
     BOT="$HOME/factory/macmini-codex-bot"
-    sed "s|__BOT_DIR__|$BOT|g" launchd/com.gurutech.hotdeal-radar.plist \
+    sed -e "s|__BOT_DIR__|$BOT|g" -e "s|__PYTHON__|/usr/bin/python3|g" launchd/com.gurutech.hotdeal-radar.plist \
       > ~/Library/LaunchAgents/com.gurutech.hotdeal-radar.plist
     plutil -lint ~/Library/LaunchAgents/com.gurutech.hotdeal-radar.plist
     launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.gurutech.hotdeal-radar.plist
@@ -24,7 +26,7 @@
     <array>
         <string>/bin/zsh</string>
         <string>-lc</string>
-        <string>cd "__BOT_DIR__" &amp;&amp; mkdir -p logs state &amp;&amp; /usr/bin/python3 scripts/hotdeal_radar.py >> logs/hotdeal-radar.log 2&gt;&amp;1</string>
+        <string>cd "__BOT_DIR__" &amp;&amp; mkdir -p logs state &amp;&amp; __PYTHON__ scripts/hotdeal_radar.py >> logs/hotdeal-radar.log 2&gt;&amp;1</string>
     </array>
 
     <!-- 15분마다. 피드가 분 단위로 갱신되므로 짧게 두되, max_age_minutes(180)로 범위를 좁힙니다. -->

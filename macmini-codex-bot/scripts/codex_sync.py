@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """코덱스 동기화 — 새 글감(feed)을 맥미니의 Codex 작업물로 바꾼다.
 
+역할 분담: 무거운 실행은 맥미니가 한다. 유리는 완성된 `drafts/`만 읽고 판단한다.
+
 동작 순서
-  1) `git pull --ff-only` 로 저장소를 최신으로 (--no-pull 로 생략)
+  1) `git pull --rebase --autostash` 로 저장소를 최신으로 (--no-pull 로 생략)
   2) feed/index.json 을 읽어 아직 처리 안 한 id 를 state/processed_ids.json 과 비교
   3) 새 글감마다 output/{id}/ 에 아래를 만든다
        - manifest.json       글감 원본 + 생성 시각
@@ -11,20 +13,24 @@
        - shorts_package.md   제목·본문·첫 댓글·해시태그·업로드 순서 체크리스트
   4) --run-codex 를 주면 로컬 `codex` CLI를 불러 codex_output.md 까지 채운다
      (CLI가 없거나 실패하면 템플릿만 남기고 다음 실행에서 다시 시도)
+  5) (기본) 초안을 `drafts/{id}/` 로 공유본으로 복사하고 `drafts/`만 커밋·푸시한다
+     → 유리는 `drafts/`만 읽으면 되고, 영상·로그·상태는 저장소에 올라가지 않는다.
 
 사용법
     python3 scripts/codex_sync.py --dry-run            # pull·상태저장·codex 실행 없이 초안만
-    python3 scripts/codex_sync.py --run-codex          # 실제 처리(+코덱스 호출)
+    python3 scripts/codex_sync.py --run-codex           # 실제 처리(+코덱스 호출) → drafts 푸시
+    python3 scripts/codex_sync.py --run-codex --no-publish --no-push
     python3 scripts/codex_sync.py --dry-run --id 20261120_1700
     python3 scripts/codex_sync.py --dry-run --json
 
-`--dry-run`은 state/processed_ids.json 을 쓰지 않습니다(다음 실행에서 다시 만들어집니다).
+`--dry-run`은 state/processed_ids.json·drafts/ 를 쓰지 않습니다(다음 실행에서 다시 만들어집니다).
 """
 from __future__ import annotations
 
 import argparse
 import json
 import os
+import re
 import shlex
 import subprocess
 import sys
@@ -33,13 +39,24 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common  # noqa: E402
-from common import BOT_DIR, FEED_DIR, REPO_ROOT, read_json, write_json  # noqa: E402
+from common import BOT_DIR, FEED_DIR, REPO_ROOT, read_json, run, write_json  # noqa: E402
 
 KST = timezone(timedelta(hours=9))
 STATE_PATH = BOT_DIR / "state" / "processed_ids.json"
 OUT_ROOT = BOT_DIR / "output"
+DRAFTS_ROOT = BOT_DIR / "drafts"
 DEFAULT_LIMIT = 5
 DEFAULT_CLIP_SEC = 20.0
+
+# 공개 저장소로 나가는 drafts 를 보내기 전에 거르는 비밀·개인정보 패턴
+SECRET_PATTERNS = [
+    ("openai_key", re.compile(r"\bsk-[A-Za-z0-9_\-]{16,}")),
+    ("github_token", re.compile(r"\b(gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})")),
+    ("aws_key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
+    ("slack_token", re.compile(r"\bxox[baprs]-[A-Za-z0-9\-]{10,}")),
+    ("private_key", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
+    ("phone_kr", re.compile(r"\b01[016789][-. ]?\d{3,4}[-. ]?\d{4}\b")),
+]
 
 
 
@@ -50,7 +67,7 @@ def pull_repo(log, enabled: bool) -> "tuple[bool, str]":
     if not enabled:
         return True, "pull 생략(--no-pull 또는 --dry-run)"
     try:
-        proc = subprocess.run(["git", "-C", str(REPO_ROOT), "pull", "--ff-only"],
+        proc = subprocess.run(["git", "-C", str(REPO_ROOT), "pull", "--rebase", "--autostash"],
                               capture_output=True, text=True, timeout=120)
     except (OSError, subprocess.TimeoutExpired) as exc:
         log.warning("git pull 실패 — %s (로컬 feed로 계속)", exc)
@@ -313,6 +330,105 @@ def run_codex(prompt: str, out_dir: Path, timeout: int = 900) -> "tuple[bool, st
     return ok, f"codex exit {proc.returncode}"
 
 
+def rel_to_bot(path: Path) -> str:
+    try:
+        return str(path.relative_to(BOT_DIR))
+    except ValueError:
+        return str(path)
+
+
+# --------------------------------------------------------------------------- 공유 초안(drafts)
+
+DRAFT_FILES = ["shorts_script.md", "captions.srt", "blog_draft.md", "hotdeal_card.md",
+               "codex_output.md", "codex_prompt.md"]
+
+
+def scan_secrets(text: str) -> "list[str]":
+    return [name for name, pattern in SECRET_PATTERNS if pattern.search(text or "")]
+
+
+def publish_drafts(item: dict, out_dir: Path, drafts_root: Path, log, codex_ok) -> "tuple[bool, str]":
+    """output/{id}/ 의 초안을 공개 저장소용 drafts/{id}/ 로 복사한다(비밀 패턴은 거부)."""
+    item_id = item.get("id") or out_dir.name
+    files = {}
+    for name in DRAFT_FILES:
+        src = out_dir / name
+        if not src.exists():
+            continue
+        text = src.read_text(encoding="utf-8", errors="replace")
+        hits = scan_secrets(text)
+        if hits:
+            log.warning("drafts 공유 보류 %s/%s — 비밀·개인정보 의심: %s", item_id, name, ", ".join(hits))
+            return False, f"보류(비밀 의심: {', '.join(hits)}) — output/{item_id}/ 에는 그대로 남아 있음"
+        files[name] = text
+    if not files:
+        return False, "공유할 초안 없음"
+
+    target = drafts_root / item_id
+    target.mkdir(parents=True, exist_ok=True)
+    for name, text in files.items():
+        (target / name).write_text(text, encoding="utf-8")
+    manifest = {
+        "id": item_id,
+        "product_name": item.get("product_name"),
+        "price_krw": item.get("price_krw"),
+        "coupang_short_url": item.get("coupang_short_url"),
+        "video_source_url": item.get("video_source_url"),
+        "made_at": datetime.now(KST).isoformat(timespec="seconds"),
+        "made_by": "macmini-codex-bot",
+        "codex_ok": codex_ok,
+        "files": sorted(files),
+        "note": ("맥미니 Codex가 만든 초안입니다. 수치의 유일한 출처는 feed/{date}/{id}.json 이고, "
+                 "게시·구매·결제는 유리/사람이 최종 확인 후 합니다."),
+    }
+    (target / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return True, f"drafts/{item_id} ({len(files)}개 파일)"
+
+
+def ensure_git_identity() -> None:
+    """커밋 신원이 없으면 저장소 로컬로만 설정(noreply 주소 — 개인 메일 노출 없음)."""
+    chk = run(["git", "-C", str(REPO_ROOT), "config", "user.email"], timeout=30)
+    if chk.returncode == 0 and (chk.stdout or "").strip():
+        return
+    run(["git", "-C", str(REPO_ROOT), "config", "user.email",
+         "59545988+adjurer@users.noreply.github.com"], timeout=30)
+    run(["git", "-C", str(REPO_ROOT), "config", "user.name", "macmini-codex-bot"], timeout=30)
+
+
+def commit_push_drafts(drafts_root: Path, ids: "list[str]", enable: bool, log) -> dict:
+    """drafts/ 만 커밋·푸시한다(다른 변경은 건드리지 않는다)."""
+    try:
+        rel = str(drafts_root.resolve().relative_to(REPO_ROOT.resolve()))
+    except ValueError:
+        return {"status": "skip", "detail": "저장소 밖 drafts 폴더"}
+    try:
+        ensure_git_identity()
+        add = run(["git", "-C", str(REPO_ROOT), "add", "-A", "--", rel], timeout=120)
+        if add.returncode != 0:
+            return {"status": "error", "detail": (add.stderr or "").strip()[:200]}
+        diff = run(["git", "-C", str(REPO_ROOT), "diff", "--cached", "--quiet", "--", rel], timeout=60)
+        if diff.returncode == 0:
+            return {"status": "no-change", "detail": "새 초안 없음"}
+        msg = (f"drafts: {', '.join(ids[:3])}{' 외' if len(ids) > 3 else ''} — "
+               f"맥미니 Codex 초안 {len(ids)}건")
+        commit = run(["git", "-C", str(REPO_ROOT), "commit", "-m", msg, "--", rel], timeout=120)
+        if commit.returncode != 0:
+            return {"status": "error", "detail": (commit.stderr or commit.stdout or "").strip()[:200]}
+        if not enable:
+            return {"status": "committed", "detail": "--no-push (커밋만)"}
+        push = run(["git", "-C", str(REPO_ROOT), "push", "origin", "HEAD"], timeout=180)
+        if push.returncode != 0:
+            run(["git", "-C", str(REPO_ROOT), "pull", "--rebase", "--autostash"], timeout=180)
+            push = run(["git", "-C", str(REPO_ROOT), "push", "origin", "HEAD"], timeout=180)
+            if push.returncode != 0:
+                return {"status": "push-failed", "detail": (push.stderr or "").strip()[:200]}
+            return {"status": "pushed", "detail": "rebase 후 푸시 성공"}
+        return {"status": "pushed", "detail": "ok"}
+    except RuntimeError as exc:
+        return {"status": "error", "detail": str(exc)}
+
+
 # --------------------------------------------------------------------------- main
 
 
@@ -327,6 +443,11 @@ def main(argv=None) -> int:
     ap.add_argument("--state", default=str(STATE_PATH))
     ap.add_argument("--out", default=str(OUT_ROOT))
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--publish", dest="publish", action="store_true", default=True,
+                    help="초안을 drafts/{id}/ 로 공유하고 drafts/ 만 커밋·푸시(기본 켜짐)")
+    ap.add_argument("--no-publish", dest="publish", action="store_false", help="drafts 공유 생략")
+    ap.add_argument("--no-push", action="store_true", help="커밋은 하되 푸시는 생략")
+    ap.add_argument("--drafts", default=str(DRAFTS_ROOT), help="공유 초안 폴더")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args(argv)
 
@@ -335,6 +456,12 @@ def main(argv=None) -> int:
     if in_launchd and (os.environ.get("CODEX_SYNC_DRY_RUN") or "").strip() in ("1", "true", "yes"):
         args.dry_run = True
     log = common.setup_logging(args.verbose)
+
+    # report_cycle.py·다른 주기와 겹치면 이번 주기는 건너뛴다(같은 글감을 두 번 만들지 않게)
+    lock = common.try_lock(wait_sec=120)
+    if lock is None:
+        log.warning("다른 실행이 저장소를 잡고 있습니다 — 이번 주기 건너뜀")
+        return 0
 
     state_path = Path(args.state)
     out_root = Path(args.out)
@@ -367,6 +494,7 @@ def main(argv=None) -> int:
         return 0
 
     results = []
+    published_ids: "list[str]" = []
     for item in targets:
         item_id = item.get("id") or "unknown"
         out_dir = out_root / item_id
@@ -387,13 +515,19 @@ def main(argv=None) -> int:
 
             results.append({"id": item_id, "out": str(out_dir), "codex": codex_msg,
                             "codex_ok": codex_ok, "status": "ok"})
-            log.info("생성 완료 %s → %s", item_id, out_dir.relative_to(BOT_DIR))
+            log.info("생성 완료 %s → %s", item_id, rel_to_bot(out_dir))
+
+            if args.publish and not args.dry_run:
+                pub_ok, pub_msg = publish_drafts(item, out_dir, Path(args.drafts), log, codex_ok)
+                results[-1]["drafts"] = pub_msg
+                if pub_ok:
+                    published_ids.append(item_id)
 
             retrying = False
             if not args.dry_run:
                 entry = {
                     "processed_at": datetime.now(KST).isoformat(timespec="seconds"),
-                    "out": str(out_dir.relative_to(BOT_DIR)),
+                    "out": rel_to_bot(out_dir),
                     "codex": codex_msg,
                 }
                 if args.run_codex and codex_ok is False:
@@ -423,13 +557,23 @@ def main(argv=None) -> int:
         write_json(state_path, {"ids": processed, "failed": failed,
                                 "updated_at": datetime.now(KST).isoformat(timespec="seconds")})
 
+    draft_push = {"status": "skip", "detail": "공유할 초안 없음"}
+    if published_ids and not args.dry_run:
+        draft_push = commit_push_drafts(Path(args.drafts), published_ids, enable=not args.no_push, log=log)
+        log.info("drafts 푸시 — %s (%s)", draft_push["status"], draft_push.get("detail", ""))
+
     if args.json:
-        print(json.dumps({"dry_run": args.dry_run, "new": len(results), "results": results},
+        print(json.dumps({"dry_run": args.dry_run, "new": len(results), "results": results,
+                          "drafts_push": draft_push},
                          ensure_ascii=False, indent=2))
     else:
         print(f"{'[미리보기] ' if args.dry_run else ''}새 글감 {len(results)}건 처리")
         for r in results:
             print(f"- {r['id']}: {r['status']} (codex {r.get('codex')}) → {r['out']}")
+            if r.get("drafts"):
+                print(f"    drafts: {r['drafts']}")
+        if published_ids:
+            print(f"drafts 푸시: {draft_push['status']}" + (f" — {draft_push['detail']}" if draft_push.get('detail') else ""))
     return 0
 
 

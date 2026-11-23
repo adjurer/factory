@@ -7,9 +7,15 @@
 
 # 상태·로그·산출물 (머신마다 다름)
 state/*.json
+state/*.lock
 logs/
 output/*
 !output/.gitkeep
+
+# 영상은 저장소에 올리지 않는다(용량·권리)
+*.mp4
+*.mov
+*.webm
 
 # 파이썬
 __pycache__/
